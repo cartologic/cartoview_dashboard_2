@@ -4,4 +4,4 @@ from django.views.generic import TemplateView
 
 class HomePage(TemplateView):
     def get(self, request, *args, **kwargs):
-        return render(request, "react_dashboard/build/index.html", {})
+        return render(request, "cartoview_dashboard_2/build/index.html", {})
