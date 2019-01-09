@@ -8,7 +8,7 @@ except(IOError, ImportError):
 setup(
   name = 'cartoview_dashboard_2',
   packages = find_packages(),
-  version = '1.0.0',
+  version = '1.5.5',
   description = 'Create awesome dashboards using maps and other charts',
   long_description=long_description,
   author = 'Cartologic',
