@@ -9,7 +9,7 @@ info = {
     "tags": ['app', 'map', 'dashboard'],
     "licence": 'BSD',
     "author_website": "http://www.cartoview.org",
-    "single_instance": False
+    "single_instance": True
 }
 
 

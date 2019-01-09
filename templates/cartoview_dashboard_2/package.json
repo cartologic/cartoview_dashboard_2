@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Dashboard client scripts for cartoview_dashboard_2 django app",
   "author": "cartologic <cartoview@cartologic.com> (http://cartologic.com/)",
-  "homepage": "https://github.com/cartologic/cartoview_dashboard_2",
   "license": "BSD Clause 2",
   "private": true,
   "repository": {
