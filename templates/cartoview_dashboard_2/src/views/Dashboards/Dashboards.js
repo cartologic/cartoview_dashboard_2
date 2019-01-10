@@ -7,6 +7,7 @@ import {
 
 import {Responsive, WidthProvider} from "react-grid-layout";
 import DefaultDashboardLogo from '../../assets/img/others/default-dashboard.png';
+import Dashboard from "../../components/Dashboard/Dashboard";
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -57,18 +58,7 @@ class Dashboards extends Component {
                 </Row>
                 <Row className="top-buffer">
                     {[...Array(4)].map((x, i) =>
-                        <Col xs="12" sm="6" md="4" key={i}>
-                            <Card>
-                                <CardHeader>
-                                    <a href="#/dashboards">Dashboard #{i} Title</a>
-                                    <div className="card-header-actions">
-                                        <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
-                                        <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
-                                    </div>
-                                </CardHeader>
-                                <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Default Dashboard Image"/></CardBody>
-                            </Card>
-                        </Col>
+                        <Dashboard key={i}/>
                     )}
                 </Row>
                 <Row>
