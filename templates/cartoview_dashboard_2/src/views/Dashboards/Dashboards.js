@@ -56,42 +56,20 @@ class Dashboards extends Component {
                     </Col>
                 </Row>
                 <Row className="top-buffer">
-                    <Col xs="12" sm="6" md="4">
-                        <Card>
-                            <CardHeader>
-                                <a href="#/dashboards">Dashboard #1 Title</a>
-                                <div className="card-header-actions">
-                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
-                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
-                                </div>
-                            </CardHeader>
-                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
-                        </Card>
-                    </Col>
-                    <Col xs="12" sm="6" md="4">
-                        <Card>
-                            <CardHeader>
-                                <a href="#/dashboards">Dashboard #2 Title</a>
-                                <div className="card-header-actions">
-                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
-                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
-                                </div>
-                            </CardHeader>
-                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
-                        </Card>
-                    </Col>
-                    <Col xs="12" sm="6" md="4">
-                        <Card>
-                            <CardHeader>
-                                <a href="#/dashboards">Dashboard #3 Title</a>
-                                <div className="card-header-actions">
-                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
-                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
-                                </div>
-                            </CardHeader>
-                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
-                        </Card>
-                    </Col>
+                    {[...Array(4)].map((x, i) =>
+                        <Col xs="12" sm="6" md="4" key={i}>
+                            <Card>
+                                <CardHeader>
+                                    <a href="#/dashboards">Dashboard #{i} Title</a>
+                                    <div className="card-header-actions">
+                                        <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
+                                        <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
+                                    </div>
+                                </CardHeader>
+                                <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Default Dashboard Image"/></CardBody>
+                            </Card>
+                        </Col>
+                    )}
                 </Row>
                 <Row>
                     <Col>

@@ -18,11 +18,11 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
-import LineChart from "../../components/LineChart";
-import AreaChart from "../../components/AreaChart";
-import BarChart from "../../components/BarChart";
-import BubbleChart from "../../components/BubbleChart";
-import ColumnChart from "../../components/ColumnChart";
+import LineChart from "../../components/Charts/LineChart";
+import AreaChart from "../../components/Charts/AreaChart";
+import BarChart from "../../components/Charts/BarChart";
+import BubbleChart from "../../components/Charts/BubbleChart";
+import ColumnChart from "../../components/Charts/ColumnChart";
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
