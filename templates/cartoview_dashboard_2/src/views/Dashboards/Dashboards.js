@@ -53,7 +53,7 @@ class Dashboards extends Component {
     }
 
     render() {
-        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id} id={dashboard.id}/>);
+        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id} id={dashboard.id} title={dashboard.title}/>);
 
         return (
             <div className="animated fadeIn">
