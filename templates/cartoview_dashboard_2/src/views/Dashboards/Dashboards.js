@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {
     Button, ButtonGroup,
-    Card, CardBody, CardHeader, Col,
+    Card, CardBody, CardFooter, CardHeader, Col, Collapse,
     Row,
 } from 'reactstrap';
 
 import {Responsive, WidthProvider} from "react-grid-layout";
+import DefaultDashboardLogo from '../../assets/img/others/default-dashboard.png';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -52,6 +53,44 @@ class Dashboards extends Component {
                         <ButtonGroup className="mr-2">
                             <Button disabled color="primary">Import</Button>
                         </ButtonGroup>
+                    </Col>
+                </Row>
+                <Row className="top-buffer">
+                    <Col xs="12" sm="6" md="4">
+                        <Card>
+                            <CardHeader>
+                                <a href="#/dashboards">Dashboard #1 Title</a>
+                                <div className="card-header-actions">
+                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
+                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
+                                </div>
+                            </CardHeader>
+                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
+                        </Card>
+                    </Col>
+                    <Col xs="12" sm="6" md="4">
+                        <Card>
+                            <CardHeader>
+                                <a href="#/dashboards">Dashboard #2 Title</a>
+                                <div className="card-header-actions">
+                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
+                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
+                                </div>
+                            </CardHeader>
+                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
+                        </Card>
+                    </Col>
+                    <Col xs="12" sm="6" md="4">
+                        <Card>
+                            <CardHeader>
+                                <a href="#/dashboards">Dashboard #3 Title</a>
+                                <div className="card-header-actions">
+                                    <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
+                                    <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
+                                </div>
+                            </CardHeader>
+                            <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo} alt="Card image cap"/></CardBody>
+                        </Card>
                     </Col>
                 </Row>
                 <Row>
