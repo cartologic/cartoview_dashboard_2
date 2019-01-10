@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {
     Button, ButtonGroup,
-    Card, CardBody, CardFooter, CardHeader, Col, Collapse,
+    Card, CardHeader, Col,
     Row,
 } from 'reactstrap';
 
 import {Responsive, WidthProvider} from "react-grid-layout";
-import DefaultDashboardLogo from '../../assets/img/others/default-dashboard.png';
 import Dashboard from "../../components/Dashboard/Dashboard";
+import axios from 'axios';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -23,7 +23,15 @@ class Dashboards extends Component {
             dropdownOpen: false,
             radioSelected: 2,
             widgets: this.props.widgets,
+            dashboardList: []
         };
+    }
+
+    componentWillMount() {
+        axios.get(`http://127.0.0.1:8000/api/dashboards/`)
+            .then(res => {
+                console.log(res.data);
+            })
     }
 
     toggle() {
@@ -58,7 +66,7 @@ class Dashboards extends Component {
                 </Row>
                 <Row className="top-buffer">
                     {[...Array(4)].map((x, i) =>
-                        <Dashboard key={i}/>
+                        <Dashboard key={i} id={i}/>
                     )}
                 </Row>
                 <Row>

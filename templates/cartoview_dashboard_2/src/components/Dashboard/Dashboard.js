@@ -8,13 +8,13 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             title: "Default Dashboard Title",
-            id: this.props.key,
+            id: this.props.id,
         };
     }
 
     render() {
         return (
-            <Col xs="12" sm="6" md="4" key={this.state.id}>
+            <Col xs="12" sm="6" md="4" key={this.state.id} id={this.state.id}>
                 <Card>
                     <CardHeader>
                         <a href="#/dashboards">{this.state.title}</a>
