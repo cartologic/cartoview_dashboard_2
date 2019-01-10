@@ -30,7 +30,9 @@ class Dashboards extends Component {
     componentWillMount() {
         axios.get(`http://127.0.0.1:8000/api/dashboards/`)
             .then(res => {
-                console.log(res.data);
+                this.setState({
+                    dashboardList: res.data
+                });
             })
     }
 
@@ -51,6 +53,7 @@ class Dashboards extends Component {
     }
 
     render() {
+        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id} id={dashboard.id}/>);
 
         return (
             <div className="animated fadeIn">
@@ -65,9 +68,7 @@ class Dashboards extends Component {
                     </Col>
                 </Row>
                 <Row className="top-buffer">
-                    {[...Array(4)].map((x, i) =>
-                        <Dashboard key={i} id={i}/>
-                    )}
+                    {dashboardList}
                 </Row>
                 <Row>
                     <Col>
