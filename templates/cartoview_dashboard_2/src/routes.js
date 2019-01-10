@@ -1,15 +1,16 @@
 import React from 'react';
 import DefaultLayout from './containers/DefaultLayout';
 
+const Home = React.lazy(() => import('./views/Home'));
 const Dashboard = React.lazy(() => import('./views/Dashboard'));
-const Base = React.lazy(() => import('./views/Base'));
+const Settings = React.lazy(() => import('./views/Settings'));
 
 
-// https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Base', component: DefaultLayout },
+  { path: '/home', exact: true, name: 'Home', component: Home },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/base', exact: true, name: 'Base', component: Base },
+  { path: '/settings', name: 'Settings', component: Settings },
 
 ];
 

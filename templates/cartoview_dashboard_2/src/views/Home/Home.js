@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 
 
-class Base extends Component {
+class Home extends Component {
     constructor(props) {
         super(props);
     }
@@ -30,4 +30,4 @@ class Base extends Component {
     }
 }
 
-export default Base;
+export default Home;

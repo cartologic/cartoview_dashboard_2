@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 
 
-class Base extends Component {
+class Settings extends Component {
     constructor(props) {
         super(props);
     }
@@ -18,7 +18,7 @@ class Base extends Component {
                     <Col>
                         <Card>
                             <CardHeader>
-                                Welcome Django User
+                                Settings
                             </CardHeader>
                             <CardBody>
                             </CardBody>
@@ -30,4 +30,4 @@ class Base extends Component {
     }
 }
 
-export default Base;
+export default Settings;

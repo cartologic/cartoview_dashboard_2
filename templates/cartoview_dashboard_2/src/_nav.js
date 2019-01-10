@@ -1,18 +1,23 @@
 export default {
   items: [
     {
-      name: 'Base',
-      url: '/base',
+      name: 'Home',
+      url: '/home',
       icon: 'icon-home',
     },
     {
-      name: 'Dashboard',
+      name: 'Dashboards',
       url: '/dashboard',
       icon: 'icon-speedometer',
       badge: {
         variant: 'info',
         text: 'NEW',
       },
+    },
+    {
+      name: 'Settings',
+      url: '/settings',
+      icon: 'icon-settings',
     }
   ],
 };
