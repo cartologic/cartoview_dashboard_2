@@ -1,5 +1,5 @@
 import Home from './Home';
-import Dashboard from './Dashboard';
+import Dashboards from './Dashboards';
 import Settings from './Settings';
 import {Login, Page404, Page500, Register} from './Pages';
 
@@ -8,7 +8,7 @@ export {
     Page500,
     Register,
     Login,
-    Dashboard,
+    Dashboards,
     Home,
     Settings,
 };

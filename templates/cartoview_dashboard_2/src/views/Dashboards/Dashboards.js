@@ -10,7 +10,7 @@ import {Responsive, WidthProvider} from "react-grid-layout";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 
-class Dashboard extends Component {
+class Dashboards extends Component {
     constructor(props) {
         super(props);
 
@@ -99,4 +99,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default Dashboards;
