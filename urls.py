@@ -1,9 +1,7 @@
-from django.conf.urls import url
-from .views import HomePage, DashboardAPIList, DashboardAPIDetail
+from django.conf.urls import url, include
+from .views import HomePage
 
 urlpatterns = [
-    url(r'^api/$', DashboardAPIList.as_view()),
-    url(r'^api/(?P<pk>\d+)$', DashboardAPIDetail.as_view()),
-
+    url(r'^api/', include('cartoview_dashboard_2.api.urls')),
     url(r'^', HomePage.as_view()),
 ]
