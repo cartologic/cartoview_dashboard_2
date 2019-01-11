@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsOwner
@@ -7,9 +8,15 @@ from .serializers import DashboardGeneralSerializer, DashboardCreateSerializer
 
 
 class DashboardListAPI(ListAPIView):
-    queryset = Dashboard.objects.all()
     serializer_class = DashboardGeneralSerializer
     pagination_class = DashboardPageNumberPagination
+
+    def get_queryset(self):
+        queryset = Dashboard.objects.all()
+        query = self.request.GET.get("q")
+        if query:
+            queryset = queryset.filter(Q(title__contains=query))
+        return queryset
 
 
 class DashboardDetailAPI(RetrieveAPIView):
