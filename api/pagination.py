@@ -2,4 +2,4 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class DashboardPageNumberPagination(PageNumberPagination):
-    page_size = 4
+    page_size = 3

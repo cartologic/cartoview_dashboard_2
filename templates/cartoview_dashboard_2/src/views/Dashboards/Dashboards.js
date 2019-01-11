@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
     Button, ButtonGroup,
-    Card, CardHeader, Col,
+    Card, CardHeader, Col, Pagination, PaginationItem, PaginationLink,
     Row,
 } from 'reactstrap';
 
@@ -23,15 +23,39 @@ class Dashboards extends Component {
             dropdownOpen: false,
             radioSelected: 2,
             widgets: this.props.widgets,
-            dashboardList: []
+            dashboardList: [],
+            dashboardAPI:{
+                total_count: 0,
+                next_url: '',
+                previous_url: '',
+                pages_count: 0,
+                displayed_pagination: [],
+            },
         };
     }
 
     componentDidMount() {
         axios.get(`http://127.0.0.1:8000/api/dashboards/?page=1`)
             .then(result => {
+                let displayed_pagination = [];
+                for (let i=0; i < Math.ceil(result.data.count / 3); i++) {
+                    displayed_pagination.push(
+                        <PaginationItem>
+                            <PaginationLink tag="button">
+                                {i+1}
+                            </PaginationLink>
+                        </PaginationItem>
+                    )
+                }
                 this.setState({
-                    dashboardList: result.data.results
+                    dashboardList: result.data.results,
+                    dashboardAPI: {
+                        total_count: result.data.count,
+                        next_url: result.data.next,
+                        previous_url: result.data.previous,
+                        pages_count: Math.ceil(result.data.count / 4),
+                        displayed_pagination: displayed_pagination,
+                    }
                 });
             })
     }
@@ -69,6 +93,17 @@ class Dashboards extends Component {
                 </Row>
                 <Row className="top-buffer">
                     {dashboardList}
+                </Row>
+                <Row className="top-buffer">
+                    <Pagination>
+                        <PaginationItem disabled={this.state.dashboardAPI.previous_url ? false : true}>
+                            <PaginationLink previous tag="button" />
+                        </PaginationItem>
+                        {this.state.dashboardAPI.displayed_pagination}
+                        <PaginationItem disabled={this.state.dashboardAPI.next_url ? false : true}>
+                            <PaginationLink next tag="button" />
+                        </PaginationItem>
+                    </Pagination>
                 </Row>
                 <Row>
                     <Col>
