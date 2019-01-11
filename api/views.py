@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
+from .permissions import IsOwner
 from ..models.Dashboard import Dashboard
 from .serializers import DashboardGeneralSerializer, DashboardCreateSerializer
 
@@ -19,6 +20,7 @@ class DashboardUpdateAPI(RetrieveUpdateAPIView):
     queryset = Dashboard.objects.all()
     serializer_class = DashboardGeneralSerializer
     lookup_field = 'id'
+    permission_classes = [IsOwner]
 
     def perform_update(self, serializer):
         serializer.save(updated_by=self.request.user)
