@@ -27,11 +27,11 @@ class Dashboards extends Component {
         };
     }
 
-    componentWillMount() {
-        axios.get(`http://127.0.0.1:8000/api/dashboards/`)
+    componentDidMount() {
+        axios.get(`http://127.0.0.1:8000/api/dashboards/?page=1`)
             .then(res => {
                 this.setState({
-                    dashboardList: res.data
+                    dashboardList: res.data.results
                 });
             })
     }
