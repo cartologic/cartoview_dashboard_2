@@ -31,7 +31,8 @@ class Dashboards extends Component {
     handleIncomingDataFromAPI = (APIResult, pageNumber = 1) => {
         let displayed_pagination = [];
         displayed_pagination.push(
-            <PaginationItem disabled={APIResult.data.previous ? false : true} onClick={() => this.handlePageTransition(pageNumber-1)} >
+            <PaginationItem disabled={APIResult.data.previous ? false : true}
+                            onClick={() => this.handlePageTransition(pageNumber - 1)}>
                 <PaginationLink previous tag="button"/>
             </PaginationItem>
         )
@@ -46,7 +47,8 @@ class Dashboards extends Component {
             )
         }
         displayed_pagination.push(
-            <PaginationItem disabled={APIResult.data.next ? false : true} onClick={() => this.handlePageTransition(pageNumber+1)} >
+            <PaginationItem disabled={APIResult.data.next ? false : true}
+                            onClick={() => this.handlePageTransition(pageNumber + 1)}>
                 <PaginationLink next tag="button"/>
             </PaginationItem>
         )
@@ -101,9 +103,7 @@ class Dashboards extends Component {
                 </Row>
                 <Row className="top-buffer">
                     <Pagination>
-
                         {this.state.dashboardAPI.displayed_pagination}
-
                     </Pagination>
                 </Row>
                 <Row>
