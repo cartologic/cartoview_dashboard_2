@@ -1,4 +1,3 @@
-from django.db.models import Q
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -12,7 +11,7 @@ class DashboardListAPI(ListAPIView):
     queryset = Dashboard.objects.all()
     serializer_class = DashboardGeneralSerializer
     pagination_class = DashboardPageNumberPagination
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title']
 
 
