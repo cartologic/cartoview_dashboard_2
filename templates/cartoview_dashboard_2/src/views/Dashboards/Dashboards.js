@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
 import {
-    Button, ButtonGroup,
-    Card, CardHeader, Col, Pagination, PaginationItem, PaginationLink,
+    Button,
+    ButtonGroup,
+    Card,
+    CardHeader,
+    Col,
+    Form,
+    FormGroup, Input, Label,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
     Row,
 } from 'reactstrap';
 
@@ -16,6 +28,7 @@ class Dashboards extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            NewDashboardModal: false,
             widgets: this.props.widgets,
             dashboardList: [],
             dashboardAPI: {
@@ -26,19 +39,28 @@ class Dashboards extends Component {
                 displayed_pagination: [],
             },
         };
+
+        this.toggleNewDashboardModal = this.toggleNewDashboardModal.bind(this);
+    }
+
+
+    toggleNewDashboardModal() {
+        this.setState({
+            NewDashboardModal: !this.state.NewDashboardModal,
+        });
     }
 
     handleIncomingDataFromAPI = (APIResult, pageNumber = 1) => {
         let displayed_pagination = [];
         displayed_pagination.push(
-            <PaginationItem disabled={APIResult.data.previous ? false : true}
+            <PaginationItem key={pageNumber - 1} disabled={APIResult.data.previous ? false : true}
                             onClick={() => this.handlePageTransition(pageNumber - 1)}>
                 <PaginationLink previous tag="button"/>
             </PaginationItem>
         )
         for (let i = 0; i < Math.ceil(APIResult.data.count / 3); i++) {
             displayed_pagination.push(
-                <PaginationItem onClick={() => this.handlePageTransition(i + 1)}
+                <PaginationItem key={i + 1} onClick={() => this.handlePageTransition(i + 1)}
                                 active={i + 1 == pageNumber ? true : false}>
                     <PaginationLink tag="button">
                         {i + 1}
@@ -47,7 +69,7 @@ class Dashboards extends Component {
             )
         }
         displayed_pagination.push(
-            <PaginationItem disabled={APIResult.data.next ? false : true}
+            <PaginationItem key={pageNumber + 2} disabled={APIResult.data.next ? false : true}
                             onClick={() => this.handlePageTransition(pageNumber + 1)}>
                 <PaginationLink next tag="button"/>
             </PaginationItem>
@@ -91,7 +113,25 @@ class Dashboards extends Component {
                 <Row>
                     <Col>
                         <ButtonGroup className="mr-2">
-                            <Button color="success">New Dashboard</Button>
+                            <Button color="success" onClick={this.toggleNewDashboardModal}>New Dashboard</Button>
+                            <Modal isOpen={this.state.NewDashboardModal} toggle={this.toggleNewDashboardModal}
+                                   className={'modal-primary'}>
+                                <ModalHeader toggle={this.toggleNewDashboardModal}>Modal title</ModalHeader>
+                                <ModalBody>
+                                    <Form action="" method="post" className="form-horizontal">
+                                        <FormGroup row>
+                                            <Col md="2"><Label htmlFor="dashboard-title">Title</Label></Col>
+                                            <Col xs="12" md="10">
+                                                <Input type="text" id="dashboard-title" name="dashboard-title" placeholder="Please enter title for dashboard"/>
+                                            </Col>
+                                        </FormGroup>
+                                    </Form>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onClick={this.toggleNewDashboardModal}>Create</Button>{' '}
+                                    <Button color="secondary" onClick={this.toggleNewDashboardModal}>Cancel</Button>
+                                </ModalFooter>
+                            </Modal>
                         </ButtonGroup>
                         <ButtonGroup className="mr-2">
                             <Button disabled color="primary">Import</Button>
