@@ -78,7 +78,7 @@ class Dashboards extends Component {
         for (let i = 0; i < Math.ceil(APIResult.data.count / 3); i++) {
             displayed_pagination.push(
                 <PaginationItem key={i + 1} onClick={() => this.handlePageTransition(i + 1)}
-                                active={i + 1 == pageNumber ? true : false}>
+                                active={i + 1 === pageNumber ? true : false}>
                     <PaginationLink tag="button">
                         {i + 1}
                     </PaginationLink>
@@ -186,12 +186,12 @@ class Dashboards extends Component {
                                                 <CardHeader>
                                                     Widget Title
                                                     <div className="card-header-actions">
-                                                        <a href="#"
+                                                        <button
                                                            className="card-header-action btn btn-setting"><i
-                                                            className="icon-settings"></i></a>
-                                                        <a className="card-header-action btn btn-close"
+                                                            className="icon-settings"></i></button>
+                                                        <button className="card-header-action btn btn-close"
                                                            onClick={this.toggleFade}><i
-                                                            className="icon-close"></i></a>
+                                                            className="icon-close"></i></button>
                                                     </div>
                                                 </CardHeader>
                                                 {widget}

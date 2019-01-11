@@ -47,6 +47,7 @@ class DefaultLayout extends Component {
       case "bubble": updatedWidgets.push(<BubbleChart/>); break;
       case "column": updatedWidgets.push(<ColumnChart/>); break;
       case "line": updatedWidgets.push(<LineChart/>); break;
+      default: updatedWidgets.push(<LineChart/>); break;
     }
     this.setState({
       widgets: updatedWidgets

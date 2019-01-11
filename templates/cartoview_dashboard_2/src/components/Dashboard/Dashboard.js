@@ -21,12 +21,12 @@ class Dashboard extends Component {
                     <CardHeader>
                         <a href="#/dashboards">{this.state.title}</a>
                         <div className="card-header-actions">
-                            <a className="card-header-action btn btn-setting"><i className="icon-settings"></i></a>
-                            <a className="card-header-action btn btn-close"><i className="icon-close"></i></a>
+                            <button className="card-header-action btn btn-setting"><i className="icon-settings"></i></button>
+                            <button className="card-header-action btn btn-close"><i className="icon-close"></i></button>
                         </div>
                     </CardHeader>
                     <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo}
-                                   alt="Default Dashboard Image"/></CardBody>
+                                   alt="Default Dashboard"/></CardBody>
                     <CardFooter>
                         Created - <Moment interval={0} format="DD MMM YYYY - hh:mm a" date={this.state.date_created}/>
                     </CardFooter>
