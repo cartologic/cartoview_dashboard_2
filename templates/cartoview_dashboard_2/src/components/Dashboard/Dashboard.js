@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import DefaultDashboardLogo from "../../assets/img/others/default-dashboard.png";
 import {Col, CardBody, CardHeader, Card, CardFooter} from "reactstrap";
+import Moment from 'react-moment';
 
 
 class Dashboard extends Component {
@@ -27,7 +28,7 @@ class Dashboard extends Component {
                     <CardBody><img className="card-img-bottom" src={DefaultDashboardLogo}
                                    alt="Default Dashboard Image"/></CardBody>
                     <CardFooter>
-                        Created - {this.state.date_created}
+                        Created - <Moment interval={0} format="DD MMM YYYY - hh:mm a" date={this.state.date_created}/>
                     </CardFooter>
                 </Card>
             </Col>
