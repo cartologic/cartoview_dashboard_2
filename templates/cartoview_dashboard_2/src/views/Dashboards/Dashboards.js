@@ -15,16 +15,10 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 class Dashboards extends Component {
     constructor(props) {
         super(props);
-
-        this.toggle = this.toggle.bind(this);
-        this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-
         this.state = {
-            dropdownOpen: false,
-            radioSelected: 2,
             widgets: this.props.widgets,
             dashboardList: [],
-            dashboardAPI:{
+            dashboardAPI: {
                 total_count: 0,
                 next_url: '',
                 previous_url: '',
@@ -34,42 +28,52 @@ class Dashboards extends Component {
         };
     }
 
-    componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/dashboards/?page=1`)
-            .then(result => {
-                let displayed_pagination = [];
-                for (let i=0; i < Math.ceil(result.data.count / 3); i++) {
-                    displayed_pagination.push(
-                        <PaginationItem>
-                            <PaginationLink tag="button">
-                                {i+1}
-                            </PaginationLink>
-                        </PaginationItem>
-                    )
-                }
-                this.setState({
-                    dashboardList: result.data.results,
-                    dashboardAPI: {
-                        total_count: result.data.count,
-                        next_url: result.data.next,
-                        previous_url: result.data.previous,
-                        pages_count: Math.ceil(result.data.count / 4),
-                        displayed_pagination: displayed_pagination,
-                    }
-                });
+    handleIncomingDataFromAPI = (APIResult, pageNumber = 1) => {
+        let displayed_pagination = [];
+        displayed_pagination.push(
+            <PaginationItem disabled={APIResult.data.previous ? false : true} onClick={() => this.handlePageTransition(pageNumber-1)} >
+                <PaginationLink previous tag="button"/>
+            </PaginationItem>
+        )
+        for (let i = 0; i < Math.ceil(APIResult.data.count / 3); i++) {
+            displayed_pagination.push(
+                <PaginationItem onClick={() => this.handlePageTransition(i + 1)}
+                                active={i + 1 == pageNumber ? true : false}>
+                    <PaginationLink tag="button">
+                        {i + 1}
+                    </PaginationLink>
+                </PaginationItem>
+            )
+        }
+        displayed_pagination.push(
+            <PaginationItem disabled={APIResult.data.next ? false : true} onClick={() => this.handlePageTransition(pageNumber+1)} >
+                <PaginationLink next tag="button"/>
+            </PaginationItem>
+        )
+        this.setState({
+            dashboardList: APIResult.data.results,
+            dashboardAPI: {
+                total_count: APIResult.data.count,
+                next_url: APIResult.data.next,
+                previous_url: APIResult.data.previous,
+                pages_count: Math.ceil(APIResult.data.count / 4),
+                displayed_pagination: displayed_pagination,
+            }
+        });
+    }
+
+    handlePageTransition = (pageNumber) => {
+        axios.get(`http://127.0.0.1:8000/api/dashboards/?page=` + pageNumber)
+            .then(APIResult => {
+                this.handleIncomingDataFromAPI(APIResult, pageNumber);
             })
     }
 
-    toggle() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen,
-        });
-    }
-
-    onRadioBtnClick(radioSelected) {
-        this.setState({
-            radioSelected: radioSelected,
-        });
+    componentDidMount() {
+        axios.get(`http://127.0.0.1:8000/api/dashboards/?page=1`)
+            .then(APIResult => {
+                this.handleIncomingDataFromAPI(APIResult);
+            })
     }
 
     onLayoutChange(layout, layouts) {
@@ -77,7 +81,8 @@ class Dashboards extends Component {
     }
 
     render() {
-        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id} dashboardObject={dashboard}/>);
+        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id}
+                                                                                        dashboardObject={dashboard}/>);
 
         return (
             <div className="animated fadeIn">
@@ -96,13 +101,9 @@ class Dashboards extends Component {
                 </Row>
                 <Row className="top-buffer">
                     <Pagination>
-                        <PaginationItem disabled={this.state.dashboardAPI.previous_url ? false : true}>
-                            <PaginationLink previous tag="button" />
-                        </PaginationItem>
+
                         {this.state.dashboardAPI.displayed_pagination}
-                        <PaginationItem disabled={this.state.dashboardAPI.next_url ? false : true}>
-                            <PaginationLink next tag="button" />
-                        </PaginationItem>
+
                     </Pagination>
                 </Row>
                 <Row>
