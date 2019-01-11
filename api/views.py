@@ -1,4 +1,5 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from ..models.Dashboard import Dashboard
 from .serializers import DashboardGeneralSerializer, DashboardCreateSerializer
 
@@ -32,6 +33,7 @@ class DashboardDeleteAPI(DestroyAPIView):
 class DashboardCreateAPI(CreateAPIView):
     queryset = Dashboard.objects.all()
     serializer_class = DashboardCreateSerializer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(created_by=self.request.user, updated_by=self.request.user)
