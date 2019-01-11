@@ -29,6 +29,7 @@ class Dashboards extends Component {
         super(props);
         this.state = {
             NewDashboardModal: false,
+            newDashboardTitle: '',
             widgets: this.props.widgets,
             dashboardList: [],
             dashboardAPI: {
@@ -48,6 +49,22 @@ class Dashboards extends Component {
         this.setState({
             NewDashboardModal: !this.state.NewDashboardModal,
         });
+    }
+
+    setNewDashboardTitle = (event) => {
+        this.setState({
+            newDashboardTitle: event.target.value
+        });
+    }
+
+    createNewDashboard = () => {
+        const dashboard = {
+            title: this.state.newDashboardTitle
+        }
+        axios.post('http://127.0.0.1:8000/api/dashboards/create/', dashboard)
+            .then(result => {
+                console.log(result)
+            })
     }
 
     handleIncomingDataFromAPI = (APIResult, pageNumber = 1) => {
@@ -122,13 +139,13 @@ class Dashboards extends Component {
                                         <FormGroup row>
                                             <Col md="2"><Label htmlFor="dashboard-title">Title</Label></Col>
                                             <Col xs="12" md="10">
-                                                <Input type="text" id="dashboard-title" name="dashboard-title" placeholder="Please enter title for dashboard"/>
+                                                <Input onChange={this.setNewDashboardTitle} type="text" id="dashboard-title" name="dashboard-title" placeholder="Please enter title for dashboard"/>
                                             </Col>
                                         </FormGroup>
                                     </Form>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="primary" onClick={this.toggleNewDashboardModal}>Create</Button>{' '}
+                                    <Button color="primary" onClick={this.createNewDashboard}>Create</Button>{' '}
                                     <Button color="secondary" onClick={this.toggleNewDashboardModal}>Cancel</Button>
                                 </ModalFooter>
                             </Modal>
