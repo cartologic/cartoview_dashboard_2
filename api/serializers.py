@@ -1,11 +1,15 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, HyperlinkedIdentityField
 from ..models.Dashboard import Dashboard
 
 
 class DashboardGeneralSerializer(ModelSerializer):
+    details_url = HyperlinkedIdentityField(
+        view_name='dashboards-api:DashboardAPIDetail',
+        lookup_field='id'
+    )
     class Meta:
         model = Dashboard
-        fields = ('id', 'title', 'created_by', 'updated_by', 'date_created', 'date_updated')
+        fields = ('id', 'title', 'date_created', 'details_url')
 
 
 class DashboardCreateSerializer(ModelSerializer):
