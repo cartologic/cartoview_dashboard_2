@@ -19,7 +19,7 @@ class Dashboard extends Component {
             <Col xs="12" sm="6" md="4" key={this.state.id} id={this.state.id}>
                 <Card>
                     <CardHeader>
-                        <a href="#/dashboards">{this.state.title}</a>
+                        <a href={"#/dashboards/"+this.state.id}>{this.state.title}</a>
                         <div className="card-header-actions">
                             <button className="card-header-action btn btn-setting"><i className="icon-settings"></i></button>
                             <button className="card-header-action btn btn-close"><i className="icon-close"></i></button>
