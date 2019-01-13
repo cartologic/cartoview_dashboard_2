@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {
     Button,
     ButtonGroup,
-    Card,
-    CardHeader,
     Col,
     Form,
     FormGroup, Input, Label,
@@ -17,11 +15,9 @@ import {
     Row,
 } from 'reactstrap';
 
-import {Responsive, WidthProvider} from "react-grid-layout";
+
 import Dashboard from "../../components/Dashboard/Dashboard";
 import axios from 'axios';
-
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 
 class Dashboards extends Component {
@@ -30,7 +26,6 @@ class Dashboards extends Component {
         this.state = {
             NewDashboardModal: false,
             newDashboardTitle: '',
-            widgets: this.props.widgets,
             dashboardList: [],
             dashboardAPI: {
                 total_count: 0,
@@ -117,13 +112,9 @@ class Dashboards extends Component {
             })
     }
 
-    onLayoutChange(layout, layouts) {
-        this.setState({layouts});
-    }
 
     render() {
-        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id}
-                                                                                        dashboardObject={dashboard}/>);
+        const dashboardList = this.state.dashboardList.map((dashboard, i) => <Dashboard key={dashboard.id} dashboardObject={dashboard}/>);
 
         return (
             <div className="animated fadeIn">
@@ -162,46 +153,6 @@ class Dashboards extends Component {
                     <Pagination>
                         {this.state.dashboardAPI.displayed_pagination}
                     </Pagination>
-                </Row>
-                <Row>
-                    <Col>
-                        <ResponsiveReactGridLayout
-                            className="layout"
-                            rowHeight={30}
-                            items={16}
-                            cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
-                            preventCollision={false}
-                            autoSize={true}
-                            layouts={this.state.layouts}
-                            onLayoutChange={(layout, layouts) =>
-                                this.onLayoutChange(layout, layouts)
-                            }
-                        >
-                            {
-                                this.props.widgets.map(
-                                    (widget, index) => {
-                                        return (
-                                            <Card key={index}
-                                                  data-grid={{x: (index * 4) % 12, y: (index * 8), w: 4, h: 8}}>
-                                                <CardHeader>
-                                                    Widget Title
-                                                    <div className="card-header-actions">
-                                                        <button
-                                                           className="card-header-action btn btn-setting"><i
-                                                            className="icon-settings"></i></button>
-                                                        <button className="card-header-action btn btn-close"
-                                                           onClick={this.toggleFade}><i
-                                                            className="icon-close"></i></button>
-                                                    </div>
-                                                </CardHeader>
-                                                {widget}
-                                            </Card>
-                                        )
-                                    }
-                                )
-                            }
-                        </ResponsiveReactGridLayout>
-                    </Col>
                 </Row>
             </div>
         );
