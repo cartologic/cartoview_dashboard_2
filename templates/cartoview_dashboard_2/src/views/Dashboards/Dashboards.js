@@ -70,7 +70,7 @@ class Dashboards extends Component {
                 <PaginationLink previous tag="button"/>
             </PaginationItem>
         )
-        for (let i = 0; i < Math.ceil(APIResult.data.count / 3); i++) {
+        for (let i = 0; i < Math.ceil(APIResult.data.count / 12); i++) {
             displayed_pagination.push(
                 <PaginationItem key={i + 1} onClick={() => this.handlePageTransition(i + 1)}
                                 active={i + 1 === pageNumber ? true : false}>
@@ -92,7 +92,7 @@ class Dashboards extends Component {
                 total_count: APIResult.data.count,
                 next_url: APIResult.data.next,
                 previous_url: APIResult.data.previous,
-                pages_count: Math.ceil(APIResult.data.count / 4),
+                pages_count: Math.ceil(APIResult.data.count / 12),
                 displayed_pagination: displayed_pagination,
             }
         });
