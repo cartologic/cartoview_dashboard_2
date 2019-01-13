@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { DropdownToggle, Nav } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import { AppAsideToggler, AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+import { AppHeaderDropdown, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/cartologic.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 
@@ -33,9 +33,6 @@ class DefaultHeader extends Component {
             </DropdownToggle>
           </AppHeaderDropdown>
         </Nav>
-        <AppAsideToggler className="d-lg-none" display="md" mobile />
-        <AppAsideToggler className="d-md-down-none" display="lg" />
-        {/*<AppAsideToggler className="d-lg-none" mobile />*/}
       </React.Fragment>
     );
   }
