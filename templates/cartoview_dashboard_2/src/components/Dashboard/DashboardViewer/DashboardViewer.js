@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import AreaChart from "../../Charts/AreaChart";
-import BarChart from "../../Charts/BarChart";
-import BubbleChart from "../../Charts/BubbleChart";
-import ColumnChart from "../../Charts/ColumnChart";
-import LineChart from "../../Charts/LineChart";
+import {AreaChart, ColumnChart, LineChart, BubbleChart, BarChart} from '../../Charts';
 import {Row, Col, Button, CardBody, Card} from "reactstrap";
 import {
     aggregateWidgetIcon, areaWidgetIcon, barWidgetIcon,
     bubbleWidgetIcon, columnWidgetIcon, identifyWidgetIcon,
-    legendWidgetIcon, lineWidgetIcon, mapWidgetIcon,
-    pieWidgetIcon
+    legendWidgetIcon, lineWidgetIcon, mapWidgetIcon, pieWidgetIcon
 } from "../../../assets/img/widgets/";
 
 class DashboardViewer extends Component {
