@@ -121,7 +121,7 @@ class Dashboards extends Component {
                 <Row>
                     <Col>
                         <ButtonGroup className="mr-2">
-                            <Button color="success" onClick={this.toggleNewDashboardModal}>New Dashboard</Button>
+                            <Button color="primary" onClick={this.toggleNewDashboardModal}>New Dashboard</Button>
                             <Modal isOpen={this.state.NewDashboardModal} toggle={this.toggleNewDashboardModal}
                                    className={'modal-primary'}>
                                 <ModalHeader toggle={this.toggleNewDashboardModal}>Modal title</ModalHeader>
@@ -142,7 +142,7 @@ class Dashboards extends Component {
                             </Modal>
                         </ButtonGroup>
                         <ButtonGroup className="mr-2">
-                            <Button disabled color="primary">Import</Button>
+                            <Button disabled color="success">Import</Button>
                         </ButtonGroup>
                     </Col>
                 </Row>
