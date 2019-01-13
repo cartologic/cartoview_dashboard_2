@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <Col xs="12" sm="3" md="2" key={this.state.id} id={this.state.id}>
+            <Col xs="12" sm="3" md="3" key={this.state.id} id={this.state.id}>
                 <Card>
                     <CardHeader>
                         <a href={"#/dashboards/"+this.state.id}>{this.state.title}</a>

@@ -64,13 +64,7 @@ class Dashboards extends Component {
 
     handleIncomingDataFromAPI = (APIResult, pageNumber = 1) => {
         let displayed_pagination = [];
-        displayed_pagination.push(
-            <PaginationItem key={pageNumber - 1} disabled={APIResult.data.previous ? false : true}
-                            onClick={() => this.handlePageTransition(pageNumber - 1)}>
-                <PaginationLink previous tag="button"/>
-            </PaginationItem>
-        )
-        for (let i = 0; i < Math.ceil(APIResult.data.count / 12); i++) {
+        for (let i = 0; i < Math.ceil(APIResult.data.count / 8); i++) {
             displayed_pagination.push(
                 <PaginationItem key={i + 1} onClick={() => this.handlePageTransition(i + 1)}
                                 active={i + 1 === pageNumber ? true : false}>
@@ -80,19 +74,13 @@ class Dashboards extends Component {
                 </PaginationItem>
             )
         }
-        displayed_pagination.push(
-            <PaginationItem key={pageNumber + 2} disabled={APIResult.data.next ? false : true}
-                            onClick={() => this.handlePageTransition(pageNumber + 1)}>
-                <PaginationLink next tag="button"/>
-            </PaginationItem>
-        )
         this.setState({
             dashboardList: APIResult.data.results,
             dashboardAPI: {
                 total_count: APIResult.data.count,
                 next_url: APIResult.data.next,
                 previous_url: APIResult.data.previous,
-                pages_count: Math.ceil(APIResult.data.count / 12),
+                pages_count: Math.ceil(APIResult.data.count / 8),
                 displayed_pagination: displayed_pagination,
             }
         });
@@ -106,10 +94,15 @@ class Dashboards extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/dashboards/?page=1`)
-            .then(APIResult => {
-                this.handleIncomingDataFromAPI(APIResult);
-            })
+        this.handlePageTransition(1)
+    }
+
+    getDisplayedPagination = () => {
+        return(
+            <Pagination>
+                {this.state.dashboardAPI.displayed_pagination}
+            </Pagination>
+        );
     }
 
 
@@ -150,9 +143,7 @@ class Dashboards extends Component {
                     {dashboardList}
                 </Row>
                 <Row className="top-buffer">
-                    <Pagination>
-                        {this.state.dashboardAPI.displayed_pagination}
-                    </Pagination>
+                    {this.getDisplayedPagination()}
                 </Row>
             </div>
         );
