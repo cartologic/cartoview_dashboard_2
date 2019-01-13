@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, Progress, TabContent, TabPane, ListGroup, ListGroupItem } from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane, ListGroup, ListGroupItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { AppSwitch } from '@coreui/react';
 import aggregateIcon from '../../assets/img/widgets/aggregate-widget.png';
 import barIcon from '../../assets/img/widgets/bar-widget.png';
 import identifyIcon from '../../assets/img/widgets/identify-widget.png';
