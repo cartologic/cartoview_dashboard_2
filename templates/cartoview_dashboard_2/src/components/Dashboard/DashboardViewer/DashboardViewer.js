@@ -1,22 +1,16 @@
-import React, {Component, Suspense} from 'react';
-import {AppAside, AppAsideToggler} from "@coreui/react";
-import DefaultAside from "../../../containers/DefaultLayout/DefaultAside";
+import React, {Component} from 'react';
 import AreaChart from "../../Charts/AreaChart";
 import BarChart from "../../Charts/BarChart";
 import BubbleChart from "../../Charts/BubbleChart";
 import ColumnChart from "../../Charts/ColumnChart";
 import LineChart from "../../Charts/LineChart";
-import {ListGroupItem, Row, Col, Button, CardBody, Card} from "reactstrap";
-import barIcon from "../../../assets/img/widgets/bar-widget.png";
-import mapIcon from "../../../assets/img/widgets/map-widget.png";
-import pieIcon from "../../../assets/img/widgets/pie-widget.png";
-import lineIcon from "../../../assets/img/widgets/line-widget.png";
-import areaIcon from "../../../assets/img/widgets/area-widget.png";
-import columnIcon from "../../../assets/img/widgets/column-widget.png";
-import bubbleIcon from "../../../assets/img/widgets/bubble-widget.png";
-import aggregateIcon from "../../../assets/img/widgets/aggregate-widget.png";
-import legendIcon from "../../../assets/img/widgets/legend-widget.png";
-import identifyIcon from "../../../assets/img/widgets/identify-widget.png";
+import {Row, Col, Button, CardBody, Card} from "reactstrap";
+import {
+    aggregateWidgetIcon, areaWidgetIcon, barWidgetIcon,
+    bubbleWidgetIcon, columnWidgetIcon, identifyWidgetIcon,
+    legendWidgetIcon, lineWidgetIcon, mapWidgetIcon,
+    pieWidgetIcon
+} from "../../../assets/img/widgets/";
 
 class DashboardViewer extends Component {
     loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
@@ -60,30 +54,30 @@ class DashboardViewer extends Component {
             <div className="animated fadeIn">
                 <Row>
                     <Col xs="12">
-                <Card className="align-items-center">
-                <CardBody>
-                    <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={mapIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={barIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={pieIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={lineIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={areaIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={columnIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={bubbleIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={aggregateIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={legendIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                    <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={identifyIcon} alt="WidgetIcon"></img></div></Button>
-                    {' '}
-                </CardBody>
-                </Card>
+                        <Card className="align-items-center">
+                        <CardBody>
+                            <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={mapWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={barWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={pieWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={lineWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={areaWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={columnWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button color="light"><div className="avatar float-right"><img className="img-avatar" src={bubbleWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={aggregateWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={legendWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                            <Button disabled color="light"><div className="avatar float-right"><img className="img-avatar" src={identifyWidgetIcon} alt="WidgetIcon"></img></div></Button>
+                            {' '}
+                        </CardBody>
+                        </Card>
                     </Col>
                 </Row>
                 <div>{this.props.match.params.id}</div>
